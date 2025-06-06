@@ -67,7 +67,7 @@
   result:
     name: Transaction receipt
     schema:
-      $ref: '#/components/schemas/TransactionReceipt'
+      $ref: '#/components/schemas/ReceiptInfo'
   examples:
     - name: eth_sendRawTransactionSync example
       params:
