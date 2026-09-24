@@ -69,32 +69,6 @@
 
 - name: eth_estimateGas
   summary: Generates and returns an estimate of how much gas is necessary to allow the transaction to complete.
-  description: |
-    For frame transactions, estimate omitted executionGas and stateGas limits by
-    executing the complete frame sequence against the selected block state.
-    Preserve supplied limits, including zero. Frames share state and warm accesses
-    subject to frame and atomic-batch rollback. Discard all estimation state.
-
-    Return max(intrinsicGas + sum(executionGas), calldataFloorGas) + sum(stateGas)
-    for the resulting limits, using EIP-8141 intrinsic and calldata floor costs.
-    This is the total gas limit, not gas consumed after refunds. Blob gas is
-    separate. Use eth_fillTransaction to obtain the individual frame limits.
-
-    A successful estimate must use limits with which every frame succeeds.
-    Determine execution-time state budgets, including temporary allocations;
-    final stateGasUsed after refills is not a sufficient budget. Check the complete
-    sequence again with the resulting limits. The result applies to the simulated
-    input and state, not future inclusion or mempool admission.
-
-    Search must terminate within the node's RPC gas and execution limits and the
-    protocol's per-dimension limits. If a successful estimate cannot be found
-    within those bounds, return an error. Do not clamp supplied limits or return
-    an unverified estimate. The search algorithm and safety margin are client-specific.
-
-    Validate supplied protocol signatures without rewriting signed fields.
-    For protocol-signature placeholders, budget the scheme's verification cost
-    and 65 bytes for SECP256K1 or 128 bytes for P256, using nonzero-byte costs.
-    Arbitrary witnesses use the supplied bytes; do not synthesize witness data.
   params:
     - name: Transaction
       required: true
