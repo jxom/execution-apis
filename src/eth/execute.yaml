@@ -101,7 +101,7 @@
         value: '0x5208'
 
 - name: eth_createAccessList
-  summary: Generates an access list for a transaction.
+  summary: Generates an access list for a transaction. Frame transactions are rejected with error -32602.
   params:
     - name: Transaction
       required: true
@@ -127,6 +127,9 @@
         gasUsed:
           title: Gas used
           $ref: '#/components/schemas/uint'
+  errors:
+    - code: -32602
+      message: Unsupported transaction type
   examples:
     - name: eth_createAccessList example
       params:

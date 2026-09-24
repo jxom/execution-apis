@@ -46,6 +46,13 @@
       - Convert only when including in a locally produced block
     3. After the fork has activated, only txs with cell proofs are accepted via p2p relay.
     4. On RPC (eth_sendRawTransaction), txs with blob proofs may still be accepted and will be auto-converted by the node. At implementer discretion, this facility can be deprecated later when users have switched to new client libraries that can create cell proofs.
+    For [EIP-8141](https://eips.ethereum.org/EIPS/eip-8141) frame transactions,
+    submit the complete 0x06-prefixed encoded envelope. Blob-carrying frame transactions
+    use the EIP-8141 network wrapper with their sidecar. The returned hash identifies
+    the typed transaction envelope, excluding the sidecar wrapper.
+    Reject frame transactions before activation, invalid envelopes or sidecars,
+    and malformed or invalid protocol signatures. Request defaults and signature
+    placeholders are not valid submission encodings.
   params:
     - name: Transaction
       required: true
