@@ -45,6 +45,19 @@ func TestFrameCallAPIs(t *testing.T) {
 	}
 	// Clients validate method-specific signature rules, field compatibility, and signed-envelope completeness.
 	var tests []testCase
+	generator.types["GasEstimateResult"] = generator.methods["eth_estimateGas"]["result"].(object)["schema"].(object)
+	for _, raw := range generator.methods["eth_estimateGas"]["examples"].([]any) {
+		example := raw.(object)
+		tests = append(tests,
+			testCase{example["name"].(string), "eth_estimateGas", example["params"].([]any)[0].(object)["value"], true},
+			testCase{example["name"].(string), "GasEstimateResult", example["result"].(object)["value"], true})
+	}
+	tests = append(tests,
+		testCase{"scalar quantity", "GasEstimateResult", "0x10000", true},
+		testCase{"numeric result", "GasEstimateResult", 65536, false},
+		testCase{"per-frame array", "GasEstimateResult", []any{"0x10000"}, false},
+		testCase{"gas object", "GasEstimateResult", object{"gas": "0x10000"}, false})
+
 	for _, variant := range []string{"defaults", "zero limits", "placeholder", "p256 placeholder", "arbitrary witness", "complete signature", "signed incomplete envelope", "signed incomplete frame", "empty signer", "arbitrary placeholder", "empty protocol signature", "missing execution limit", "missing state limit", "missing both limits", "empty frames", "outer input", "other type with frames"} {
 		frame := object{"mode": "0x1", "executionGas": "0x10000", "stateGas": "0x10000"}
 		request := object{"type": "0x6", "from": "0x1111111111111111111111111111111111111111", "frames": []any{frame}}
