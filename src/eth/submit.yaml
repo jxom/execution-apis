@@ -29,6 +29,41 @@
       result:
         name: Transaction hash
         value: '0xe670ec64341771606e55d6b4ca35a1a6b75ee3d5145a99d05921026d1527331'
+    - name: Frame transaction submission example
+      description: Offline signing example, not a recorded client response.
+      params:
+        - name: Transaction
+          value:
+            type: '0x6'
+            chainId: '0x1'
+            nonce: '0x0'
+            from: '0x7e5f4552091a69125d5dfcb7b8c2659029395bdf'
+            frames:
+              - mode: '0x1'
+                flags: '0x3'
+                target: null
+                executionGas: '0x10000'
+                stateGas: '0x10000'
+                value: '0x0'
+                data: '0x'
+              - mode: '0x2'
+                flags: '0x0'
+                target: '0x2222222222222222222222222222222222222222'
+                executionGas: '0x10000'
+                stateGas: '0x0'
+                value: '0x0'
+                data: '0x'
+            signatures:
+              - scheme: '0x1'
+                signer: '0x7e5f4552091a69125d5dfcb7b8c2659029395bdf'
+                msg: '0x'
+            maxPriorityFeePerGas: '0x1'
+            maxFeePerGas: '0x2'
+            maxFeePerBlobGas: '0x0'
+            blobVersionedHashes: []
+      result:
+        name: Transaction hash
+        value: '0xc9c7d35ad1d61a7796d4e44aa220edfe3878bd76c7c5a331ff199aa6bc369e1e'
 - name: eth_sendRawTransaction
   summary: Submits a raw transaction. You can create and sign a transaction
     externally using a library such as [web3.js](https://web3js.readthedocs.io/)

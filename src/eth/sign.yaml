@@ -62,3 +62,68 @@
             v: '0x26'
             r: '0x839ebaab7774ffdae60d418fc8b4192d2cb861ac31acbb5fef26027d1b8f10ae'
             s: '0x15396a78493395691c10fccc33ec13f2eeb96a3ba2b4ca1652c91bb2b348d12b'
+    - name: Frame transaction signing example
+      description: Offline signing example, not a recorded client response.
+      params:
+        - name: Transaction
+          value:
+            type: '0x6'
+            chainId: '0x1'
+            nonce: '0x0'
+            from: '0x7e5f4552091a69125d5dfcb7b8c2659029395bdf'
+            frames:
+              - mode: '0x1'
+                flags: '0x3'
+                target: null
+                executionGas: '0x10000'
+                stateGas: '0x10000'
+                value: '0x0'
+                data: '0x'
+              - mode: '0x2'
+                flags: '0x0'
+                target: '0x2222222222222222222222222222222222222222'
+                executionGas: '0x10000'
+                stateGas: '0x0'
+                value: '0x0'
+                data: '0x'
+            signatures:
+              - scheme: '0x1'
+                signer: '0x7e5f4552091a69125d5dfcb7b8c2659029395bdf'
+                msg: '0x'
+            maxPriorityFeePerGas: '0x1'
+            maxFeePerGas: '0x2'
+            maxFeePerBlobGas: '0x0'
+            blobVersionedHashes: []
+      result:
+        name: Transaction result
+        value:
+          raw: '0x06f8aa0180947e5f4552091a69125d5dfcb7b8c2659029395bdfefce010380c883010000830100008080df0280942222222222222222222222222222222222222222c583010000808080f85cf85a01947e5f4552091a69125d5dfcb7b8c2659029395bdf80b8410095b0bb9267e33b21f944e87db859a37f223e8f084aeb6bcb9762ffb43a3853f17d31a1a8da4ac93bb5515708faf551f9cda2aa4882fbd0c5f24246d1a642fbebc3010280c0'
+          tx:
+            type: '0x6'
+            chainId: '0x1'
+            nonce: '0x0'
+            from: '0x7e5f4552091a69125d5dfcb7b8c2659029395bdf'
+            frames:
+              - mode: '0x1'
+                flags: '0x3'
+                target: null
+                executionGas: '0x10000'
+                stateGas: '0x10000'
+                value: '0x0'
+                data: '0x'
+              - mode: '0x2'
+                flags: '0x0'
+                target: '0x2222222222222222222222222222222222222222'
+                executionGas: '0x10000'
+                stateGas: '0x0'
+                value: '0x0'
+                data: '0x'
+            signatures:
+              - scheme: '0x1'
+                signer: '0x7e5f4552091a69125d5dfcb7b8c2659029395bdf'
+                msg: '0x'
+                signature: '0x0095b0bb9267e33b21f944e87db859a37f223e8f084aeb6bcb9762ffb43a3853f17d31a1a8da4ac93bb5515708faf551f9cda2aa4882fbd0c5f24246d1a642fbeb'
+            maxPriorityFeePerGas: '0x1'
+            maxFeePerGas: '0x2'
+            maxFeePerBlobGas: '0x0'
+            blobVersionedHashes: []
